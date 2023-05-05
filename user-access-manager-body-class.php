@@ -38,7 +38,7 @@ function uam_bc ( $classes ) {
 		foreach ( $grupos as $grupo ) {
 			$permissoes = $wpdb->get_results( 'select * from ' . $wpdb->prefix . 'uam_accessgroup_to_object where group_id = ' . $grupo->group_id );
 			foreach ( $permissoes as $permissao ) {
-				if ( current_user_can( $permissao->object_id ) ) {
+				if ( current_user_can( 'administrator' ) || current_user_can( $permissao->object_id ) ) {
 					$autorizado = true;
 				}
 			}
